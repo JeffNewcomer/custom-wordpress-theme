@@ -22,6 +22,7 @@ function university_features() {
   // code below creates an additional image size 400tall by 260wide and crops the original image to do so
   add_image_size('professorLandscape', 400, 260, true);
   add_image_size('professorPortrait', 480, 650, true);
+  add_image_size('pageBanner', 1500, 350, true);
 }
 
 add_action('after_setup_theme', 'university_features');
