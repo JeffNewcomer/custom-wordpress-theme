@@ -21,7 +21,7 @@
         <!-- below is the div for the professor's image and the text content to the right of the image -->
         <div class="row group">
           <div class="one-third">
-            <?php the_post_thumbnail(); ?>
+            <?php the_post_thumbnail('professorPortrait'); ?>
           </div>
           <div class="two-thirds">
             <?php the_content(); ?>
