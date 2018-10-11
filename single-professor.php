@@ -17,7 +17,17 @@
 
     <div class="container container--narrow page-section">
       <!-- normally the metabox (breadcrumb div) goes here  -->
-      <div class="generic-content"><?php the_content(); ?></div>
+      <div class="generic-content">
+        <!-- below is the div for the professor's image and the text content to the right of the image -->
+        <div class="row group">
+          <div class="one-third">
+            <?php the_post_thumbnail(); ?>
+          </div>
+          <div class="two-thirds">
+            <?php the_content(); ?>
+          </div>
+        </div>
+      </div>
 
       <?php
 
