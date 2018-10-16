@@ -34,8 +34,19 @@ function pageBanner($args = NULL) {
 
 function university_files() {
   // changing the version from 1.0 to microtime() on the js and css links forces chrome to look at the file every time instead of using a cached version. Note: when you make the site live you'll want to change this back
-  wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDo5lVVEs-RU0kPFsU7utA7R-JxswfmUic', NULL, microtime(), true);
-  wp_enqueue_script('main-university-javascript', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
+
+  // wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDo5lVVEs-RU0kPFsU7utA7R-JxswfmUic', NULL, microtime(), true);
+  // wp_enqueue_script('main-university-javascript', get_theme_file_uri('/js/scripts-bundled.js'), NULL, microtime(), true);
+
+// using the 1.0
+  wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyDo5lVVEs-RU0kPFsU7utA7R-JxswfmUic', NULL, '1.0', true);
+  wp_enqueue_script('main-university-javascript', get_theme_file_uri('/js/scripts-bundled.js'), NULL, '1.0', true);
+
+// using the https
+  // wp_enqueue_script('googleMap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDo5lVVEs-RU0kPFsU7utA7R-JxswfmUic', NULL, '1.0', true);
+  // wp_enqueue_script('main-university-javascript', get_theme_file_uri('/js/scripts-bundled.js'), NULL, '1.0', true);
+
+
   wp_enqueue_style('google-font', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
   wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
   wp_enqueue_style('university_main_styles', get_stylesheet_uri(), NULL, microtime());
