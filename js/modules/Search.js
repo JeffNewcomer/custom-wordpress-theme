@@ -47,8 +47,9 @@ class Search{
   }
 
   getResults() {
-    this.resultsDiv.html("Imagine real search results here");
-    this.isSpinnerVisible = false;
+    $.getJSON('http://newk-university.local/wp-json/wp/v2/pages?search', function(posts) {
+      alert(posts[0].title.rendered);
+    });
   }
 
   keyPressDispatcher(e) {
