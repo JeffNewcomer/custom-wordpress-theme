@@ -46,7 +46,8 @@ function universitySearchResults($data) {
     if(get_post_type() == 'program') {
       array_push($results['programs'], array(
         'title' => get_the_title(),
-        'permalink' => get_the_permalink()
+        'permalink' => get_the_permalink(),
+        'id' => get_the_id()
       ));
     }
 
@@ -83,7 +84,7 @@ function universitySearchResults($data) {
       array(
         'key' => 'related_programs',
         'compare' => 'LIKE',
-        'value' => '"68"'
+        'value' => '"' . $results['programs'][0]['id'] . '"'
       )
     )
   ));
