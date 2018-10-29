@@ -49,6 +49,9 @@ class MyNotes {
         thisNote.slideUp();
         console.log("congrats");
         console.log(response);
+        if (response.userNoteCount < 5) {
+          $(".note-limit-message").removeClass("active");
+        }
       },
       error: (response) => {
         console.log("sorry");
@@ -74,11 +77,11 @@ class MyNotes {
       data: ourUpdatedPost,
       success: (response) => {
         this.makeNoteReadOnly(thisNote);
-        console.log("congrats");
+        console.log("Congrats");
         console.log(response);
       },
       error: (response) => {
-        console.log("sorry");
+        console.log("Sorry");
         console.log(response);
       }
     });
@@ -89,7 +92,7 @@ class MyNotes {
       'title': $(".new-note-title").val(),
       'content': $(".new-note-body").val(),
       'status': 'publish'
-        }
+    }
 
     $.ajax({
       beforeSend: (xhr) => {
@@ -102,19 +105,22 @@ class MyNotes {
         $(".new-note-title, .new-note-body").val('');
         $(`
           <li data-id="${response.id}">
-            <input readonly class="note-title-field" value="${response.title.raw}"/>
-            <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span>
-            <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span>
+            <input readonly class="note-title-field" value="${response.title.raw}">
+            <span class="edit-note"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</span>
+            <span class="delete-note"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</span>
             <textarea readonly class="note-body-field">${response.content.raw}</textarea>
-            <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right" aria-hidden="true"></i>Save</span>
+            <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right" aria-hidden="true"></i> Save</span>
           </li>
           `).prependTo("#my-notes").hide().slideDown();
 
-        console.log("congrats");
+        console.log("Congrats");
         console.log(response);
       },
       error: (response) => {
-        console.log("sorry");
+        if(response.responseText == "You have reached your note limit.") {
+          $(".note-limit-message").addClass("active");
+        }
+        console.log("Sorry");
         console.log(response);
       }
     });
