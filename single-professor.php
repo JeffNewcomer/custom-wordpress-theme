@@ -32,21 +32,25 @@
 
               $existStatus = 'no';
 
-              $existQuery = new WP_Query(array(
-                'author' => get_current_user_id(),
-                'post_type' => 'like',
-                'meta_query'=> array(
-                  array(
-                    'key' => 'liked_professor_id',
-                    'compare' => '=',
-                    'value' => get_the_ID()
+              if (is_user_logged_in()) {
+                $existQuery = new WP_Query(array(
+                  'author' => get_current_user_id(),
+                  'post_type' => 'like',
+                  'meta_query'=> array(
+                    array(
+                      'key' => 'liked_professor_id',
+                      'compare' => '=',
+                      'value' => get_the_ID()
+                    )
                   )
-                )
-              ));
+                ));
 
-              if ($existQuery->found_posts) {
-                $existStatus = 'yes';
+                if ($existQuery->found_posts) {
+                  $existStatus = 'yes';
+                }
               }
+
+
 
 
             ?>
